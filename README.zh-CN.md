@@ -47,7 +47,7 @@
 |---|---|---|---|
 | [SIAgent](https://arxiv.org/abs/2603.00522) | arXiv 2026.02 | 眼手协同 | 把视线 + 手部微动作翻译成自然语言，再由 LLM 推理意图；60+ VR 任务上意图识别 97.2%（对比 gaze+pinch 的 93.1%） |
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | 场景变化 + 任务对齐 | SSIM 帧差检测场景变化；用户动作与预期任务步骤的对齐信号标记偏离 |
-| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | 常开第一人称流 | 常开眼镜 agent，自主决定何时协助 |
+| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | 常开第一人称流 | 眼镜 agent：*感知*常开但*行动*严格反应式——视频流只用来接地用户请求，从不主动发起；主动式明确列为 future work（§8）。读全文后对摘要口径的修正 |
 | [Egocentric Co-Pilot](https://arxiv.org/abs/2603.01104) | WWW 2026 | 第一人称视频 | 第一人称 co-pilot，web 原生部署 |
 | [ProAgent](https://arxiv.org/abs/2512.06721) | arXiv 2025.12 | 分层日常感知 | 廉价线索常开、必要时才升级到重感知，并融合已存用户偏好；AR 眼镜实机部署：主动预测准确率 +27.7%、误检 −20.5%（n=20） |
 | [StreamGaze](https://arxiv.org/abs/2512.01707) | arXiv 2025.12 | 流式视频上的视线 | 测视线能否预测*接下来会发生什么*（预判），而不只是当前意图；past/present/proactive 三类任务族，8,521 个 QA 对 |
@@ -78,7 +78,7 @@
 | [Proactive Agent](https://arxiv.org/abs/2410.12361) | arXiv 2024.10（清华） | 用人类接受/拒绝标注训练 reward model 模拟用户判断；ProactiveBench（6,790 事件），F1 66.47% |
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | 规则式：偏离已知任务脚本即介入（无成本项） |
 | [Proactive Assistant Dialogue Generation](https://arxiv.org/abs/2506.05904) | arXiv 2025.06 | 从流式第一人称视频决定何时开口 |
-| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | 常开眼镜上 agent 自主决策协助时机 |
+| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | 无——感知常开、行动只由用户发起。2026 年最接近量产的系统用「不做时机决策」解决时机问题：人仍是那道门 |
 | [PRISM](https://arxiv.org/abs/2602.01532) | arXiv 2026.02 | 当校准的 P(用户接受) 超过由**「漏帮 vs 误扰」不对称成本推导的阈值**才介入；ProactiveBench 上误报 −22.78%、F1 +20.14%。迄今最接近效用决策的重建 |
 | [不用 LLM 决定何时唤醒](https://arxiv.org/abs/2605.30152) | arXiv 2026.05 | 时间图编码器输出逐事件触发概率，LLM 只在触发*之后*被调用（服务器快 4–7 倍，约 220 MiB）。决策层可能根本不是一个 LLM 问题 |
 | [Pro²Assist](https://arxiv.org/abs/2605.04227) | arXiv 2026.05 | 长程程序性任务的步骤感知 AR 协助；把**时机准确率**当头牌指标（最高达基线 2.29 倍） |
@@ -170,7 +170,7 @@
 | Pielot 2017 | 手机传感器 + 行为历史 | 学习的时机分类器 | 移动端触达 | 337 人实地实验 |
 | Proactive Agent 2024 | 事件流 | 学习的 reward model（接受/拒绝） | 桌面任务 | ProactiveBench |
 | YETI 2025 | SSIM + 脚本对齐 | 规则：偏离即介入，无成本项 | 有脚本的程序性 AR | HoloAssist |
-| VisionClaw 2026 | 常开第一人称 | agent 自主决策 | 开放世界眼镜 | 无 |
+| VisionClaw 2026 | 常开第一人称 | 无（用户发起；主动式=future work） | 开放世界眼镜 | 无 |
 | SIAgent 2026 | 眼手 | 意图识别（是「听懂」，不是「何时出手」） | VR 任务 | 60+ 任务套件 |
 | UI-TARS-2 2025 | GUI 状态 | 任务完成 reward（有 ground truth） | GUI/OS，封闭 | OSWorld 等 |
 | PRISM 2026 | 事件流 | 校准 P(接受) 对不对称成本阈值 | 桌面任务 | ProactiveBench |

@@ -47,7 +47,7 @@ Every work below is placed by which part of that inequality it advances.
 |---|---|---|---|
 | [SIAgent](https://arxiv.org/abs/2603.00522) | arXiv 2026.02 | eye–hand coordination | Translates gaze + hand micro-actions into natural language, then LLM infers intent; 97.2% intent recognition over 60+ VR tasks (vs 93.1% gaze+pinch) |
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | scene change + task alignment | SSIM frame differencing detects scene shifts; alignment of user actions against expected task steps flags deviation |
-| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | always-on egocentric stream | Always-on glasses agent that autonomously decides when to assist |
+| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | always-on egocentric stream | Glasses agent with always-on *perception* but strictly reactive *action* — the stream grounds requests, never initiates; proactivity is named future work (§8). Corrected from the abstract's framing after full-text read |
 | [Egocentric Co-Pilot](https://arxiv.org/abs/2603.01104) | WWW 2026 | egocentric video | First-person co-pilot with web-native deployment |
 | [ProAgent](https://arxiv.org/abs/2512.06721) | arXiv 2025.12 | tiered daily-life sensing | Cheap cues always on, rich perception only when warranted, fused with stored preferences; deployed on AR glasses: +27.7% proactive prediction accuracy, −20.5% false detections (n=20) |
 | [StreamGaze](https://arxiv.org/abs/2512.01707) | arXiv 2025.12 | gaze on streaming video | Whether gaze predicts *what happens next* (anticipation), not just current intent; past/present/proactive task families, 8,521 QA pairs |
@@ -78,7 +78,7 @@ The core of the field, and the layer with the deepest history. Two lineages that
 | [Proactive Agent](https://arxiv.org/abs/2410.12361) | arXiv 2024.10 (THU) | Reward model trained on human accept/reject labels simulates user judgment; ProactiveBench (6,790 events), F1 66.47% |
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | Rule-based: deviation from known task script ⇒ intervene (no cost term) |
 | [Proactive Assistant Dialogue Generation](https://arxiv.org/abs/2506.05904) | arXiv 2025.06 | When-to-speak from streaming egocentric video |
-| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | Agent self-decides assistance moments on always-on glasses |
+| [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | None — always-on perception, user-initiated action only. The most deployable 2026 system solves timing by not having it: the human stays the gate |
 | [PRISM](https://arxiv.org/abs/2602.01532) | arXiv 2026.02 | Intervenes when calibrated P(user acceptance) exceeds a threshold **derived from asymmetric costs of missed help vs false alarms**; −22.78% false alarms, +20.14% F1 on ProactiveBench. The closest rebuild of the utility decision so far |
 | [Wake/Anchor without an LLM](https://arxiv.org/abs/2605.30152) | arXiv 2026.05 | Temporal-graph encoder emits per-event trigger probability; the LLM is called only *after* the trigger fires (4–7× faster on servers, ~220 MiB). The decision layer may not be an LLM problem at all |
 | [Pro²Assist](https://arxiv.org/abs/2605.04227) | arXiv 2026.05 | Step-aware AR assistance over long-horizon procedures; reports **timing accuracy** as a headline metric (up to 2.29× baselines) |
@@ -170,7 +170,7 @@ The asymmetry that makes this hard: negative signals are cheap and abundant (eve
 | Pielot 2017 | phone sensors + behavior history | learned opportune-moment classifier | mobile engagement | 337-user field study |
 | Proactive Agent 2024 | event streams | learned reward model (accept/reject) | desktop tasks | ProactiveBench |
 | YETI 2025 | SSIM + script alignment | rule: deviation ⇒ intervene, no cost term | scripted procedural AR | HoloAssist |
-| VisionClaw 2026 | always-on egocentric | agent self-decision | open-world glasses | — |
+| VisionClaw 2026 | always-on egocentric | none (user-initiated; proactivity = future work) | open-world glasses | — |
 | SIAgent 2026 | eye–hand | intent recognition (understand, not when-to-act) | VR tasks | 60+ task suite |
 | UI-TARS-2 2025 | GUI state | task-completion reward (ground truth exists) | GUI/OS, closed | OSWorld etc. |
 | PRISM 2026 | event streams | calibrated P(accept) vs asymmetric-cost threshold | desktop tasks | ProactiveBench |
