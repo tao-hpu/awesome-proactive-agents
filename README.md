@@ -30,10 +30,11 @@ Every work below is placed by which part of that inequality it advances.
         │                   │                    │                  │
         └───────────────────┴────────┬───────────┴──────────────────┘
                                      ▼
-                        5. EVALUATION  (the loop)
-                        was the intervention good?
-                        acceptance · timing precision/recall · annoyance
-                        → feedback re-tunes the decision threshold
+                 5. EVALUATION & SELF-IMPROVEMENT  (the loop)
+                 was the intervention good? does the system get better?
+                 offline: timing precision/recall · annoyance benchmarks
+                 online:  accept / dismiss / "snooze 3 days" = reward events
+                 → feedback re-tunes θ (the smallest possible RL)
 ```
 
 ---
@@ -94,7 +95,7 @@ Timing decisions are personal: the same intervention is helpful for one user and
 | [MemOS](https://arxiv.org/abs/2507.03724) | arXiv 2025.07 | Memory as a first-class OS resource: parametric / activation / plaintext, unified in MemCube |
 | [SpeechLess](https://arxiv.org/abs/2602.00793) | arXiv 2026.02 | Personalized spatial memory assistant in AR — closest existing work to memory-conditioned intervention |
 
-## 5 · Evaluation — was the intervention good?
+## 5 · Evaluation & Self-Improvement — closing the loop
 
 The least standardized layer, and (per the thesis of this list) the one that gates everything else: without a reliable eval, an RL reward for intervention quality cannot even be defined.
 
@@ -113,6 +114,18 @@ The least standardized layer, and (per the thesis of this list) the one that gat
 | Work | Venue / Date | Use |
 |---|---|---|
 | [Egocentric Procedural AI Assistants](https://arxiv.org/abs/2511.13261) | arXiv 2025.11 | Benchmark roster and task landscape for procedural egocentric assistance |
+
+### Online feedback & self-improvement
+
+Every deployed proactive system already emits a reward stream, and most of it is discarded. Explicit user actions — accept, dismiss, "don't show this again", "snooze for 3 days" — are labeled preference data on `(context, intervention)` pairs. "Snooze for 3 days" is doubly informative: a strong negative reward on this intervention *and* a hard constraint the user writes directly into the policy.
+
+Three maturity levels observed in practice:
+
+1. **Log only** — feedback collected, never used (most products today).
+2. **Threshold adaptation** — per-user, per-context updates to θ; one parameter, bandit-style. The smallest possible RL, and probably where always-on assistants should start.
+3. **Policy learning** — a learned reward model over interventions ([Proactive Agent](https://arxiv.org/abs/2410.12361) is the offline version of this).
+
+The asymmetry that makes this hard: negative signals are cheap and abundant (every dismissal is one), while positive signals are weak and delayed — the user who *wasn't* annoyed says nothing, and the intervention that saves ten minutes tomorrow emits nothing today. This is why self-improvement is drawn inside the evaluation layer rather than as a sixth stage: the feedback edge is only as good as the measurement that defines it (`reward ⊆ eval`).
 
 ### Missing metrics (open)
 
