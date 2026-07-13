@@ -68,7 +68,7 @@ The core of the field, and the layer with the deepest history. Two lineages that
 | [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003 (Horvitz & Apacible) | Learned models of interruptability from desktop activity streams |
 | [Beyond Interruptibility](https://dl.acm.org/doi/10.1145/3130956) | IMWUT 2017 (Pielot et al.) | Shifted the question from "can I interrupt?" to "is this an *opportune moment to engage*?"; 337-user field study, 5× lift from behavioral history |
 | [Attention Management Systems: a Survey](https://arxiv.org/abs/1806.06771) | IMWUT 2018 (Anderson et al.) | The field's self-portrait at its pre-LLM peak — attention fragmentation, breakpoints, deferral: the vocabulary the cost term lives in |
-| [Adaptive Notification Scheduling in Production](https://doi.org/10.1145/3292500.3330732) | KDD 2019 (Okoshi et al.) | Breakpoint-based deferral shipped to **687,840 users** of a commercial app — the lineage's only population-scale deployment |
+| [Adaptive Notification Scheduling in Production](https://doi.org/10.1145/3292500.3330732) | KDD 2019 (Okoshi et al.) | Breakpoint-based deferral: 382,518-user deployment study (up to +60.7% click rate), then enabled for **all 10M+ Android users** of Yahoo! JAPAN's app — the lineage's population-scale proof |
 | [Opportune Moments in VR](https://doi.org/10.1145/3491102.3517529) | CHI 2022 (Chen et al.) | Interruptibility prediction crossed into the headset four years before the proactive-MR wave — which has ignored it |
 
 ### LLM-era proactivity (2024–)

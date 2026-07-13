@@ -68,7 +68,7 @@
 | [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003（Horvitz & Apacible） | 从桌面活动流中学习可打扰性模型 |
 | [Beyond Interruptibility](https://dl.acm.org/doi/10.1145/3130956) | IMWUT 2017（Pielot 等） | 把问题从「能不能打扰」推进到「这是不是一个*适合触达的时机*」；337 人实地实验，引入行为历史后预测提升 5 倍 |
 | [注意力管理系统综述](https://arxiv.org/abs/1806.06771) | IMWUT 2018（Anderson 等） | 这条脉络在 LLM 前夜的自画像：注意力碎片化、断点、延迟投递，成本项赖以生存的整套词汇 |
-| [自适应通知调度的生产部署](https://doi.org/10.1145/3292500.3330732) | KDD 2019（Okoshi 等） | 基于断点的延迟投递上线到商业 App 的 **687,840 名用户**，这条脉络唯一的人群级部署 |
+| [自适应通知调度的生产部署](https://doi.org/10.1145/3292500.3330732) | KDD 2019（Okoshi 等） | 基于断点的延迟投递：382,518 用户部署实验（点击率最高 +60.7%），随后全量上线 Yahoo! JAPAN **超 1000 万 Android 用户**，这条脉络的人群级实证 |
 | [VR 里的时机预测](https://doi.org/10.1145/3491102.3517529) | CHI 2022（Chen 等） | 可打扰性预测早在主动式 MR 浪潮之前四年就进了头显，而这波浪潮没有引用它 |
 
 ### LLM 时代的主动式（2024–）
