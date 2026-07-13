@@ -1,5 +1,7 @@
 # Awesome Proactive Agents
 
+**English** | [中文](README.zh-CN.md)
+
 > **When should an always-on agent intervene?**
 > A field map of proactive AI assistance: what signals an agent can watch, how it decides to act, what it does, what it remembers, and how we measure whether the intervention was worth it.
 
