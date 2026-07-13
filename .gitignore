@@ -1,1 +1,8 @@
 .DS_Store
+
+# private working areas (survey draft, benchmark experiments) — never public
+paper/
+experiments/
+results/
+notes/
+_*/

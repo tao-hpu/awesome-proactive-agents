@@ -175,6 +175,6 @@ One PR per work. Place it in the layer it primarily advances, add one honest lin
 
 ## Maintainer
 
-An Tao ([FIM Labs](https://fim.ai)) — building agent runtimes; this map is the outline of a survey in progress on intervention timing for always-on agents.
+Tao An ([FIM Labs](https://fim.ai)) — building agent runtimes; this map is the outline of a survey in progress on intervention timing for always-on agents.
 
 *License: CC0. Last verified: 2026-07.*
