@@ -49,9 +49,12 @@
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | 场景变化 + 任务对齐 | SSIM 帧差检测场景变化；用户动作与预期任务步骤的对齐信号标记偏离 |
 | [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | 常开第一人称流 | 常开眼镜 agent，自主决定何时协助 |
 | [Egocentric Co-Pilot](https://arxiv.org/abs/2603.01104) | WWW 2026 | 第一人称视频 | 第一人称 co-pilot，web 原生部署 |
+| [ProAgent](https://arxiv.org/abs/2512.06721) | arXiv 2025.12 | 分层日常感知 | 廉价线索常开、必要时才升级到重感知，并融合已存用户偏好；AR 眼镜实机部署：主动预测准确率 +27.7%、误检 −20.5%（n=20） |
+| [StreamGaze](https://arxiv.org/abs/2512.01707) | arXiv 2025.12 | 流式视频上的视线 | 测视线能否预测*接下来会发生什么*（预判），而不只是当前意图；past/present/proactive 三类任务族，8,521 个 QA 对 |
+| [TicToc —「时间盲」](https://arxiv.org/abs/2510.23853) | ACL 2026 Findings | 流逝的时间本身 | 76 个场景测工具调用决策是否符合人类时间感知；**给了显式时间戳也没有模型超过 65% 对齐** |
 | [Predicting Human Interruptibility with Sensors](https://dl.acm.org/doi/10.1145/1057237.1057243) | TOCHI 2005（Fogarty 等） | 环境传感器 | LLM 之前的证明：廉价传感器预测可打扰性比人类判断更准 |
 
-*空位：LLM 时代的时间/日程上下文信号，意外地没人做。*
+*2026-07 更新：时间上下文这个空位不再是空的，而是失守的。给了时间戳模型依然「时间盲」（TicToc），这比空白是更强的发现。*
 
 ## 2 · 决策：何时出手
 
@@ -64,6 +67,9 @@
 | [Attention-Sensitive Alerting](https://arxiv.org/abs/1301.6707) | UAI 1999（Horvitz, Jacobs, Hovel） | 把提醒建模为期望效用：推迟的代价 vs 打扰的代价，在用户注意力不确定的条件下权衡 |
 | [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003（Horvitz & Apacible） | 从桌面活动流中学习可打扰性模型 |
 | [Beyond Interruptibility](https://dl.acm.org/doi/10.1145/3130956) | IMWUT 2017（Pielot 等） | 把问题从「能不能打扰」推进到「这是不是一个*适合触达的时机*」；337 人实地实验，引入行为历史后预测提升 5 倍 |
+| [注意力管理系统综述](https://arxiv.org/abs/1806.06771) | IMWUT 2018（Anderson 等） | 这条脉络在 LLM 前夜的自画像：注意力碎片化、断点、延迟投递，成本项赖以生存的整套词汇 |
+| [自适应通知调度的生产部署](https://doi.org/10.1145/3292500.3330732) | KDD 2019（Okoshi 等） | 基于断点的延迟投递上线到商业 App 的 **687,840 名用户**，这条脉络唯一的人群级部署 |
+| [VR 里的时机预测](https://doi.org/10.1145/3491102.3517529) | CHI 2022（Chen 等） | 可打扰性预测早在主动式 MR 浪潮之前四年就进了头显，而这波浪潮没有引用它 |
 
 ### LLM 时代的主动式（2024–）
 
@@ -73,8 +79,11 @@
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | 规则式：偏离已知任务脚本即介入（无成本项） |
 | [Proactive Assistant Dialogue Generation](https://arxiv.org/abs/2506.05904) | arXiv 2025.06 | 从流式第一人称视频决定何时开口 |
 | [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | 常开眼镜上 agent 自主决策协助时机 |
+| [PRISM](https://arxiv.org/abs/2602.01532) | arXiv 2026.02 | 当校准的 P(用户接受) 超过由**「漏帮 vs 误扰」不对称成本推导的阈值**才介入；ProactiveBench 上误报 −22.78%、F1 +20.14%。迄今最接近效用决策的重建 |
+| [不用 LLM 决定何时唤醒](https://arxiv.org/abs/2605.30152) | arXiv 2026.05 | 时间图编码器输出逐事件触发概率，LLM 只在触发*之后*被调用（服务器快 4–7 倍，约 220 MiB）。决策层可能根本不是一个 LLM 问题 |
+| [Pro²Assist](https://arxiv.org/abs/2605.04227) | arXiv 2026.05 | 长程程序性任务的步骤感知 AR 协助；把**时机准确率**当头牌指标（最高达基线 2.29 倍） |
 
-**这份清单想暴露的 gap**：1999–2017 那条脉络把*成本项*建模得很严谨，但没有能干活的执行者；LLM 时代有了强执行者，却大多只检测「用户需要帮助」而不带成本项。几乎没有人在开放世界（无脚本）场景下，用现代模型重建完整的「收益 − 成本」决策。
+**这份清单想暴露的 gap（2026-07 更新）**：1999–2017 那条脉络把*成本项*建模得很严谨，但没有能干活的执行者。LLM 时代有了强执行者，如今才开始重新发现成本项，而且是碎片式的：PRISM 定价误报，[Precision Proactivity](https://arxiv.org/abs/2505.10742) 度量认知负荷，[EgoSocial](https://arxiv.org/abs/2510.13105) 命名社交违和，门控类论文定价算力。没有人把这些碎片统一进一个 θ，也没有一篇继承 1999–2017 的形式化。另注意：三篇独立的 2026 工作（PRISM 的审慎门、时间图触发器、[前置感知器](https://arxiv.org/abs/2606.03236)）收敛于同一个**廉价门 / 昂贵执行者**架构，这个收敛本身领域还没有人点破。
 
 ## 3 · 执行：决定出手之后做什么
 
@@ -83,6 +92,7 @@
 | [UI-TARS-2](https://arxiv.org/abs/2509.02544) | arXiv 2025.09（字节 Seed） | 多轮 RL GUI agent：数据飞轮 + 混合环境（GUI + 文件系统 + 终端）+ 统一沙箱；OSWorld 47.5、AndroidWorld 73.3。证明了*当 reward 有 ground truth（任务完成与否）时*多轮 RL 可行 |
 | [Seed1.5-VL](https://arxiv.org/abs/2505.07062) | arXiv 2025.05（字节 Seed） | 532M 视觉编码器 + 20B 激活 MoE；60 个公开 benchmark 中 38 个 SOTA，含 GUI/agent 任务 |
 | [Depth Anything 3](https://arxiv.org/abs/2511.10647) | arXiv 2025.11（字节 Seed） | 单一朴素 transformer + depth-ray 目标做任意视角几何；位姿与几何精度超过 VGGT。物理世界介入所需的空间接地 |
+| [Full-Duplex-Bench](https://arxiv.org/abs/2503.04721) | ASRU 2025 | 语音社区毫秒级的 when-to-speak：停顿处理、话轮转换、**backchannel（附和）**、被打断时让位。附和是缺失的*分级*动作：介入不是二元的（沉默 / 全量打断），而是一个成本递增的菜单 |
 
 *归位理由：感知、几何、GUI 操作是「手」，积木已经成熟。瓶颈在第 2 层，不在第 3 层。*
 
@@ -96,6 +106,7 @@
 | [Mem0](https://arxiv.org/abs/2504.19413) | arXiv 2025.04 | 面向生产的可扩展长期记忆层 |
 | [MemOS](https://arxiv.org/abs/2507.03724) | arXiv 2025.07 | 记忆作为一等 OS 资源：参数 / 激活 / 明文三类，统一进 MemCube |
 | [SpeechLess](https://arxiv.org/abs/2602.00793) | arXiv 2026.02 | AR 里的个性化空间记忆助手，现有工作里离「记忆条件化介入」最近的一个 |
+| [Sensing What Surveys Miss](https://arxiv.org/abs/2602.00880) | CHI 2026 | 生理信号 + **逐用户动态阈值**决定何时触发 LLM 协助；罕见地直接消融时机本身（恰时 vs 错位 vs 随机——恰时:准确率 +21%）。个人化 θ 的已实现实例 |
 
 ## 5 · 评估与自我改进：闭环
 
@@ -110,12 +121,17 @@
 | [ProactiveBench](https://arxiv.org/abs/2410.12361) | 2024.10 | 6,790 个事件，带人类接受/拒绝标注的主动任务预测 |
 | [ProactiveEval](https://arxiv.org/abs/2508.20973) | arXiv 2025.08 | 主动式*对话* agent 的统一评估框架 |
 | [ProAgentBench](https://arxiv.org/abs/2602.04482) | arXiv 2026.02 | 基于真实数据的主动协助评估 |
+| [EgoSocial](https://arxiv.org/abs/2510.13105) | arXiv 2025.10 | 13,500 个第一人称社交视频问答对，**介入时机本身就是指标**：Gemini 2.5 Pro 只有 14.4%。还命名了本图此前缺失的一种成本：社交违和 |
+| [ProactiveVideoQA](https://arxiv.org/abs/2507.09313) | arXiv 2025.07 | **PAUC**——已发表、经人类验证的响应*时机动态*度量（不只看内容）。它的破绽：没有成本项 |
+| [EgoProactive / Pro²Bench](https://arxiv.org/abs/2606.04970) | arXiv 2026.06（Meta） | Out-of-Plan 标注让*脱离脚本*成为一等的、可恢复的事件；把五个 benchmark 统一进同一主动引导 schema |
+| [Precision Proactivity](https://arxiv.org/abs/2505.10742) | arXiv 2025.05 | 真实职业工作的 1,178 次观察：**AI 发起的任务切换是绩效下降的最强预测因子**——LLM 时代成本项一直缺的那张实证价签 |
 
 ### 综述
 
 | 工作 | 出处 / 时间 | 用途 |
 |---|---|---|
 | [Egocentric Procedural AI Assistants](https://arxiv.org/abs/2511.13261) | arXiv 2025.11 | 程序性第一人称辅助的 benchmark 名录与任务版图 |
+| [Proactive Conversational AI](https://doi.org/10.1145/3715097) | ACM TOIS 2025（Deng 等） | 对话侧的综述：*获准开口之后说什么、朝什么目标说*。本图管的是*要不要开口*——引用它，然后划清界线 |
 
 ### 在线反馈与自我改进
 
@@ -140,7 +156,7 @@
 
 ### 缺失的度量（开放）
 
-- **时机 precision/recall**：agent 选择介入的时刻里，多少是恰当的？恰当的时刻里，多少被抓住了？
+- **带成本项的时机 precision/recall**：PAUC（ProactiveVideoQA）是给时机动态打分的首个发表尝试，但一个只奖励抓住时机、不定价误扰的度量仍然只是半个度量。
 - **反感度 / 打扰成本**：只看接受率可以被 hack（少触发或滥触发都能刷），需要成本侧度量。
 - **延迟收益**：价值之后才兑现的介入，目前没有 credit assignment 的故事。
 
@@ -157,17 +173,18 @@
 | VisionClaw 2026 | 常开第一人称 | agent 自主决策 | 开放世界眼镜 | 无 |
 | SIAgent 2026 | 眼手 | 意图识别（是「听懂」，不是「何时出手」） | VR 任务 | 60+ 任务套件 |
 | UI-TARS-2 2025 | GUI 状态 | 任务完成 reward（有 ground truth） | GUI/OS，封闭 | OSWorld 等 |
+| PRISM 2026 | 事件流 | 校准 P(接受) 对不对称成本阈值 | 桌面任务 | ProactiveBench |
 
-按列读这张表：信号越来越丰富，执行者越来越强，但**决策列仍然分裂成「没有成本项的规则」和「没有现代执行者的成本模型」两半**，而 eval 列在开放世界场景下还没有一个共享的时机质量 benchmark。
+按列读这张表：信号越来越丰富，执行者越来越强，但**决策列仍然分裂成「没有成本项的规则」和「没有现代执行者的成本模型」两半**——PRISM 是第一座看得见的桥，但它只定价误报、只在桌面。eval 列在开放世界场景下仍没有共享的时机质量 benchmark（EgoSocial 最接近，但只测社交切片）。
 
 ## 开放问题（survey 的种子）
 
 1. **没有 ground truth 的 reward。** GUI agent 有任务完成作 reward；介入质量没有等价物。什么样的 eval 能让 RL reward 变得可定义？
-2. **成本项。** 现代主动式工作检测「需要」，几乎没人建模打扰成本。1999–2017 的效用框架怎么移植到 LLM 执行者上？
+2. **成本项。** 到 2026 年，诚实的表述已不是「没人建模成本」，而是「成本被碎片式建模」：误报率（PRISM）、认知负荷（Precision Proactivity）、社交违和（EgoSocial）、算力（门控类）。没有人把碎片统一进一个 θ，也没有人继承 1999–2017 的效用形式化。
 3. **无脚本的时机。** YETI 式偏离检测需要任务脚本，开放世界的日常场景没有脚本。
 4. **延迟收益的 credit assignment。** 帮用户省下明天十分钟的介入，今天拿不到信号。
 5. **个人化阈值。** 同一个 θ 对不同用户、上下文、时段都是错的，时机策略必须以记忆为条件。
-6. **Benchmark 碎片化。** HoloAssist 的介入类型预测、ProactiveBench 的接受/拒绝、ProactiveEval 的对话框架各测一个切面，没有一个端到端覆盖开放世界 MR 的介入时机。
+6. **Benchmark 碎片化。** HoloAssist 的介入类型预测、ProactiveBench 的接受/拒绝、ProactiveEval 的对话框架、EgoSocial 的社交时机、PAUC 的时机动态各测一个切面；Pro²Bench 的五合一是第一步但仍锚定脚本。没有一个端到端覆盖开放世界 MR 的介入时机。
 
 ---
 

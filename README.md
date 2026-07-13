@@ -49,9 +49,12 @@ Every work below is placed by which part of that inequality it advances.
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | scene change + task alignment | SSIM frame differencing detects scene shifts; alignment of user actions against expected task steps flags deviation |
 | [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | always-on egocentric stream | Always-on glasses agent that autonomously decides when to assist |
 | [Egocentric Co-Pilot](https://arxiv.org/abs/2603.01104) | WWW 2026 | egocentric video | First-person co-pilot with web-native deployment |
+| [ProAgent](https://arxiv.org/abs/2512.06721) | arXiv 2025.12 | tiered daily-life sensing | Cheap cues always on, rich perception only when warranted, fused with stored preferences; deployed on AR glasses: +27.7% proactive prediction accuracy, −20.5% false detections (n=20) |
+| [StreamGaze](https://arxiv.org/abs/2512.01707) | arXiv 2025.12 | gaze on streaming video | Whether gaze predicts *what happens next* (anticipation), not just current intent; past/present/proactive task families, 8,521 QA pairs |
+| [TicToc — "Temporally Blind"](https://arxiv.org/abs/2510.23853) | ACL 2026 Findings | elapsed time itself | 76 scenarios testing whether tool-use decisions match human time perception; **no model exceeds 65% alignment even when handed explicit timestamps** |
 | [Predicting Human Interruptibility with Sensors](https://dl.acm.org/doi/10.1145/1057237.1057243) | TOCHI 2005 (Fogarty et al.) | ambient sensors | Pre-LLM proof that cheap sensors predict interruptibility better than humans do |
 
-*Open slot: temporal/calendar context signals in the LLM era — surprisingly under-explored.*
+*Update 2026-07: the temporal-context slot is no longer empty — it is failing. Agents stay temporally blind even with timestamps in hand (TicToc), which is a stronger finding than absence.*
 
 ## 2 · Decision — when to act
 
@@ -64,6 +67,9 @@ The core of the field, and the layer with the deepest history. Two lineages that
 | [Attention-Sensitive Alerting](https://arxiv.org/abs/1301.6707) | UAI 1999 (Horvitz, Jacobs, Hovel) | Framed alerting as expected-utility: cost of deferring vs cost of interrupting, under uncertainty about user attention |
 | [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003 (Horvitz & Apacible) | Learned models of interruptability from desktop activity streams |
 | [Beyond Interruptibility](https://dl.acm.org/doi/10.1145/3130956) | IMWUT 2017 (Pielot et al.) | Shifted the question from "can I interrupt?" to "is this an *opportune moment to engage*?"; 337-user field study, 5× lift from behavioral history |
+| [Attention Management Systems: a Survey](https://arxiv.org/abs/1806.06771) | IMWUT 2018 (Anderson et al.) | The field's self-portrait at its pre-LLM peak — attention fragmentation, breakpoints, deferral: the vocabulary the cost term lives in |
+| [Adaptive Notification Scheduling in Production](https://doi.org/10.1145/3292500.3330732) | KDD 2019 (Okoshi et al.) | Breakpoint-based deferral shipped to **687,840 users** of a commercial app — the lineage's only population-scale deployment |
+| [Opportune Moments in VR](https://doi.org/10.1145/3491102.3517529) | CHI 2022 (Chen et al.) | Interruptibility prediction crossed into the headset four years before the proactive-MR wave — which has ignored it |
 
 ### LLM-era proactivity (2024–)
 
@@ -73,8 +79,11 @@ The core of the field, and the layer with the deepest history. Two lineages that
 | [YETI](https://arxiv.org/abs/2501.09355) | arXiv 2025.01 | Rule-based: deviation from known task script ⇒ intervene (no cost term) |
 | [Proactive Assistant Dialogue Generation](https://arxiv.org/abs/2506.05904) | arXiv 2025.06 | When-to-speak from streaming egocentric video |
 | [VisionClaw](https://arxiv.org/abs/2604.03486) | arXiv 2026.04 | Agent self-decides assistance moments on always-on glasses |
+| [PRISM](https://arxiv.org/abs/2602.01532) | arXiv 2026.02 | Intervenes when calibrated P(user acceptance) exceeds a threshold **derived from asymmetric costs of missed help vs false alarms**; −22.78% false alarms, +20.14% F1 on ProactiveBench. The closest rebuild of the utility decision so far |
+| [Wake/Anchor without an LLM](https://arxiv.org/abs/2605.30152) | arXiv 2026.05 | Temporal-graph encoder emits per-event trigger probability; the LLM is called only *after* the trigger fires (4–7× faster on servers, ~220 MiB). The decision layer may not be an LLM problem at all |
+| [Pro²Assist](https://arxiv.org/abs/2605.04227) | arXiv 2026.05 | Step-aware AR assistance over long-horizon procedures; reports **timing accuracy** as a headline metric (up to 2.29× baselines) |
 
-**The gap this list exists to expose:** the 1999–2017 lineage modeled the *cost* side rigorously but had no capable actor; the LLM era has capable actors but mostly detects "user needs help" without a cost term. Almost nobody has rebuilt the full `benefit − cost` decision with modern models in open-world (script-free) scenarios.
+**The gap this list exists to expose (updated 2026-07):** the 1999–2017 lineage modeled the *cost* side rigorously but had no capable actor. The LLM era has capable actors and is only now rediscovering the cost term — in fragments: PRISM prices false alarms, [Precision Proactivity](https://arxiv.org/abs/2505.10742) measures cognitive load, [EgoSocial](https://arxiv.org/abs/2510.13105) names social violation, gating papers price compute. Nobody has unified these fragments into one θ, and none of them inherits the 1999–2017 formalisms. Note also that three independent 2026 papers (PRISM's deliberation gate, the temporal-graph trigger, [pre-reasoning perception](https://arxiv.org/abs/2606.03236)) converge on a **cheap-gate / expensive-actor** architecture — a convergence the field itself has not yet remarked on.
 
 ## 3 · Action — what the agent does once it decides
 
@@ -83,6 +92,7 @@ The core of the field, and the layer with the deepest history. Two lineages that
 | [UI-TARS-2](https://arxiv.org/abs/2509.02544) | arXiv 2025.09 (ByteDance Seed) | Multi-turn RL GUI agent: data flywheel + hybrid environment (GUI + file system + terminal) + unified sandbox; OSWorld 47.5, AndroidWorld 73.3. Proves multi-turn RL works *when reward has ground truth (task completion)* |
 | [Seed1.5-VL](https://arxiv.org/abs/2505.07062) | arXiv 2025.05 (ByteDance Seed) | 532M vision encoder + 20B-active MoE; SOTA on 38/60 public benchmarks incl. GUI/agent tasks |
 | [Depth Anything 3](https://arxiv.org/abs/2511.10647) | arXiv 2025.11 (ByteDance Seed) | Any-view geometry from a single plain transformer with a depth-ray target; surpasses VGGT on pose + geometry. Spatial grounding for physical-world intervention |
+| [Full-Duplex-Bench](https://arxiv.org/abs/2503.04721) | ASRU 2025 | Millisecond-scale when-to-speak from the speech community: pause handling, turn-taking, **backchanneling**, barge-in. Backchanneling is the missing *graduated* action — intervention is not binary (silence / full interruption) but a menu of escalating costs |
 
 *Placement rationale: perception/geometry/GUI-operation are the "hands" — mature building blocks. The bottleneck is layer 2, not layer 3.*
 
@@ -96,6 +106,7 @@ Timing decisions are personal: the same intervention is helpful for one user and
 | [Mem0](https://arxiv.org/abs/2504.19413) | arXiv 2025.04 | Production-oriented scalable long-term memory layer |
 | [MemOS](https://arxiv.org/abs/2507.03724) | arXiv 2025.07 | Memory as a first-class OS resource: parametric / activation / plaintext, unified in MemCube |
 | [SpeechLess](https://arxiv.org/abs/2602.00793) | arXiv 2026.02 | Personalized spatial memory assistant in AR — closest existing work to memory-conditioned intervention |
+| [Sensing What Surveys Miss](https://arxiv.org/abs/2602.00880) | CHI 2026 | Physiological signals + **per-user dynamic thresholds** for when to fire LLM support; the rare study that ablates timing itself (well-timed vs misaligned vs random — well-timed: +21% accuracy). Personalized θ, implemented |
 
 ## 5 · Evaluation & Self-Improvement — closing the loop
 
@@ -110,12 +121,17 @@ The least standardized layer, and (per the thesis of this list) the one that gat
 | [ProactiveBench](https://arxiv.org/abs/2410.12361) | 2024.10 | 6,790 events with human accept/reject labels for proactive task prediction |
 | [ProactiveEval](https://arxiv.org/abs/2508.20973) | arXiv 2025.08 | Unified evaluation framework for proactive *dialogue* agents |
 | [ProAgentBench](https://arxiv.org/abs/2602.04482) | arXiv 2026.02 | Proactive assistance evaluation with real-world data |
+| [EgoSocial](https://arxiv.org/abs/2510.13105) | arXiv 2025.10 | 13,500 egocentric social video-question pairs where **intervention timing is the metric itself**: Gemini 2.5 Pro scores 14.4%. Also names a cost this map lacked: social violation |
+| [ProactiveVideoQA](https://arxiv.org/abs/2507.09313) | arXiv 2025.07 | **PAUC** — a published, human-validated metric for response *timing dynamics* (not just content). Its opening: no cost term |
+| [EgoProactive / Pro²Bench](https://arxiv.org/abs/2606.04970) | arXiv 2026.06 (Meta) | Out-of-Plan annotations make *leaving the script* a first-class, recoverable event; unifies five benchmarks under one proactive-guidance schema |
+| [Precision Proactivity](https://arxiv.org/abs/2505.10742) | arXiv 2025.05 | 1,178 observations of real professional work: **AI-initiated task switching is the strongest predictor of performance decline** — the empirical price tag the LLM-era cost term was missing |
 
 ### Surveys
 
 | Work | Venue / Date | Use |
 |---|---|---|
 | [Egocentric Procedural AI Assistants](https://arxiv.org/abs/2511.13261) | arXiv 2025.11 | Benchmark roster and task landscape for procedural egocentric assistance |
+| [Proactive Conversational AI](https://doi.org/10.1145/3715097) | ACM TOIS 2025 (Deng et al.) | The dialogue-side survey: *what to say and toward what goal once speaking is licensed*. This map covers whether to speak at all — cite it, then draw the line |
 
 ### Online feedback & self-improvement
 
@@ -140,7 +156,7 @@ The asymmetry that makes this hard: negative signals are cheap and abundant (eve
 
 ### Missing metrics (open)
 
-- **Timing precision/recall**: of the moments an agent chose to intervene, how many were opportune? Of the opportune moments, how many were caught?
+- **Timing precision/recall with a cost term**: PAUC (ProactiveVideoQA) is a first published attempt at scoring timing dynamics — but a metric that rewards catching opportune moments without pricing false interruptions is still half a metric.
 - **Annoyance / interruption cost**: acceptance rate alone is gameable (reward hacking via under- or over-triggering); a cost-side metric is needed.
 - **Delayed benefit**: interventions whose value materializes later have no credit-assignment story.
 
@@ -157,17 +173,18 @@ The asymmetry that makes this hard: negative signals are cheap and abundant (eve
 | VisionClaw 2026 | always-on egocentric | agent self-decision | open-world glasses | — |
 | SIAgent 2026 | eye–hand | intent recognition (understand, not when-to-act) | VR tasks | 60+ task suite |
 | UI-TARS-2 2025 | GUI state | task-completion reward (ground truth exists) | GUI/OS, closed | OSWorld etc. |
+| PRISM 2026 | event streams | calibrated P(accept) vs asymmetric-cost threshold | desktop tasks | ProactiveBench |
 
-Reading the table by column: signals are getting richer, actors are getting stronger, but the **decision column still splits into "rules without cost terms" and "cost models without modern actors"** — and the eval column has no shared benchmark for timing quality in open-world scenarios.
+Reading the table by column: signals are getting richer, actors are getting stronger, but the **decision column still splits into "rules without cost terms" and "cost models without modern actors"** — PRISM is the first visible bridge, and it prices only false alarms, in a desktop setting. The eval column still has no shared benchmark for timing quality in open-world scenarios (EgoSocial comes closest, for the social slice).
 
 ## Open problems (survey seed)
 
 1. **Reward without ground truth.** GUI agents have task completion as reward; intervention quality has no equivalent. What is the eval that makes an RL reward definable?
-2. **The cost term.** Modern proactive works detect need; almost none model interruption cost. How does the 1999–2017 utility framing port to LLM actors?
+2. **The cost term.** As of 2026 the honest framing is no longer "nobody models cost" but "cost is modeled in fragments" — false-alarm rate (PRISM), cognitive load (Precision Proactivity), social violation (EgoSocial), compute (gating papers) — and nobody has unified the fragments into one θ or inherited the 1999–2017 utility formalisms.
 3. **Script-free timing.** YETI-style deviation detection needs a task script. Open-world daily scenarios have none.
 4. **Credit assignment for delayed benefit.** An intervention that saves the user ten minutes tomorrow gets no signal today.
 5. **Personalized thresholds.** The same θ is wrong for different users, contexts, and times of day — timing policy must be memory-conditioned.
-6. **Benchmark fragmentation.** HoloAssist's intervention-type prediction, ProactiveBench's accept/reject, ProactiveEval's dialogue framing measure different slices; none covers open-world MR intervention timing end to end.
+6. **Benchmark fragmentation.** HoloAssist's intervention-type prediction, ProactiveBench's accept/reject, ProactiveEval's dialogue framing, EgoSocial's social timing, PAUC's timing dynamics measure different slices; Pro²Bench's five-benchmark unification is a first step but stays script-anchored. None covers open-world MR intervention timing end to end.
 
 ---
 
