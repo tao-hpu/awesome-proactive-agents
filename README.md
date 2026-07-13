@@ -119,6 +119,15 @@ The least standardized layer, and (per the thesis of this list) the one that gat
 
 Every deployed proactive system already emits a reward stream, and most of it is discarded. Explicit user actions — accept, dismiss, "don't show this again", "snooze for 3 days" — are labeled preference data on `(context, intervention)` pairs. "Snooze for 3 days" is doubly informative: a strong negative reward on this intervention *and* a hard constraint the user writes directly into the policy.
 
+Feedback itself has depth — the truer the signal, the harder the attribution:
+
+| Level | Signal | Cost | Attribution |
+|---|---|---|---|
+| **L0 explicit** | accept / dismiss / snooze | free but sparse & biased | trivial |
+| **L1 implicit behavioral** | did the user follow the suggestion; gaze dwell vs aversion; recovery time after interruption; undo | dense, no user effort | easy–moderate |
+| **L2 outcome** | task completion delta, time saved, errors avoided | needs task instrumentation | delayed → credit assignment |
+| **L3 long-term** | retention, trust, user disabling proactivity entirely (the ultimate negative reward) | population-level A/B only | hardest |
+
 Three maturity levels observed in practice:
 
 1. **Log only** — feedback collected, never used (most products today).
