@@ -11,7 +11,7 @@ Most agent research asks *"can the agent do the task?"*. This list is organized 
 `intervene ⇔ E[benefit of acting] − E[cost of interrupting] > θ`
 Every work below is placed by which part of that inequality it advances.
 
-*Status: v0.1 skeleton · actively maintained · PRs welcome.*
+*Status: v0.2 · actively maintained · PRs welcome.*
 
 ---
 
@@ -64,10 +64,16 @@ The core of the field, and the layer with the deepest history. Two lineages that
 
 | Work | Venue / Date | Contribution |
 |---|---|---|
-| [Attention-Sensitive Alerting](https://arxiv.org/abs/1301.6707) | UAI 1999 (Horvitz, Jacobs, Hovel) | Framed alerting as expected-utility: cost of deferring vs cost of interrupting, under uncertainty about user attention |
-| [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003 (Horvitz & Apacible) | Learned models of interruptability from desktop activity streams |
+| [Attention-Sensitive Alerting](https://arxiv.org/abs/1301.6707) | UAI 1999 (Horvitz, Jacobs, Hovel) | Framed alerting as expected-utility: cost of deferring vs cost of interrupting, under uncertainty about user attention; waiting is a first-class action with a computable value |
+| [Principles of Mixed-Initiative UI](https://doi.org/10.1145/302979.303030) | CHI 1999 (Horvitz) | The decision geometry: the action threshold *rises with the user's depth of focus*, and adding dialog as a third action yields a three-way policy — stay silent / ask / act — 25 years before assistants rediscovered the clarifying question as a UX pattern |
+| [Four Methods for Coordinating Interruption](https://doi.org/10.1207/S15327051HCI1701_2) | HCI 2002 (McFarlane) | Timing is a *coordination* choice: immediate / negotiated / mediated / scheduled, compared in a 36-participant dual-task study. Negotiated (announce, let the user pick the moment) won most design goals — a baseline modern proactive papers almost never run |
+| [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003 (Horvitz & Apacible) | Learned interruption cost **in dollars** (willingness-to-pay) from desktop/calendar/audio streams, and *forecast* the next cheaply-interruptible window; models transferred across users scored below majority-class guessing — the standing warning against population-level timing policies |
+| [Task Structure Predicts Cost of Interruption](https://doi.org/10.1145/1124772.1124882) | CHI 2006 (Iqbal & Bailey) | Interruption cost from task structure alone, no sensors: three plan features predict a 3.7× spread in resumption lag (464 → 1,702 ms) — a price legible offline from exactly the task decomposition modern script-following agents already hold |
+| [Disruption and Recovery of Computing Tasks](https://doi.org/10.1145/1240624.1240730) | CHI 2007 (Iqbal & Horvitz) | The field-measured magnitude: 27 workers, 2,267 logged hours — a ~20-minute disruption arc per alert, and 27% of suspended windows unresumed after two hours. Any model pricing an interruption at the duration of its response is off by two orders of magnitude |
+| [InterruptMe](https://doi.org/10.1145/2632048.2632062) | UbiComp 2014 (Pejović & Musolesi) | Interruption cost is **path-dependent**: sentiment toward a notification more than halves after eight others in the prior two hours, so a context-driven gate that fires back-to-back is *worse than random* on interruptibility exhaustion |
 | [Beyond Interruptibility](https://dl.acm.org/doi/10.1145/3130956) | IMWUT 2017 (Pielot et al.) | Shifted the question from "can I interrupt?" to "is this an *opportune moment to engage*?"; 337-user field study, 5× lift from behavioral history |
 | [Attention Management Systems: a Survey](https://arxiv.org/abs/1806.06771) | IMWUT 2018 (Anderson et al.) | The field's self-portrait at its pre-LLM peak — attention fragmentation, breakpoints, deferral: the vocabulary the cost term lives in |
+| [JITAI: Just-in-Time Adaptive Interventions](https://doi.org/10.1007/s12160-016-9830-8) | Ann. Behav. Med. 2018 (Nahum-Shani et al.) | Mobile health's timing formalism: decision points, tailoring variables, an explicit *provide nothing* action, and burden/fatigue as named first-class costs — but thresholds are theory-set free parameters and neither expectation is estimated |
 | [Adaptive Notification Scheduling in Production](https://doi.org/10.1145/3292500.3330732) | KDD 2019 (Okoshi et al.) | Breakpoint-based deferral: 382,518-user deployment study (up to +60.7% click rate), then enabled for **all 10M+ Android users** of Yahoo! JAPAN's app — the lineage's population-scale proof |
 | [Opportune Moments in VR](https://doi.org/10.1145/3491102.3517529) | CHI 2022 (Chen et al.) | Interruptibility prediction crossed into the headset four years before the proactive-MR wave — which has ignored it |
 
@@ -132,6 +138,7 @@ The least standardized layer, and (per the thesis of this list) the one that gat
 |---|---|---|
 | [Egocentric Procedural AI Assistants](https://arxiv.org/abs/2511.13261) | arXiv 2025.11 | Benchmark roster and task landscape for procedural egocentric assistance |
 | [Proactive Conversational AI](https://doi.org/10.1145/3715097) | ACM TOIS 2025 (Deng et al.) | The dialogue-side survey: *what to say and toward what goal once speaking is licensed*. This map covers whether to speak at all — cite it, then draw the line |
+| [Anticipatory Mobile Computing](https://doi.org/10.1145/2693843) | ACM CSUR 2015 (Pejović & Musolesi) | The closest prior survey: one subsection on opportune moments inside a broader treatment of mobile sensing and context prediction. Neither organizes the literature around a decision rule nor prices the intervention, and it predates always-on LLM assistants entirely |
 
 ### Online feedback & self-improvement
 

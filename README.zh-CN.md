@@ -11,7 +11,7 @@
 `介入 ⇔ E[行动收益] − E[打扰成本] > θ`
 下面每一项工作，都按它推进了这个不等式的哪一部分归位。
 
-*状态：v0.1 骨架 · 持续维护 · 欢迎 PR。*
+*状态：v0.2 · 持续维护 · 欢迎 PR。*
 
 ---
 
@@ -64,10 +64,16 @@
 
 | 工作 | 出处 / 时间 | 贡献 |
 |---|---|---|
-| [Attention-Sensitive Alerting](https://arxiv.org/abs/1301.6707) | UAI 1999（Horvitz, Jacobs, Hovel） | 把提醒建模为期望效用：推迟的代价 vs 打扰的代价，在用户注意力不确定的条件下权衡 |
-| [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003（Horvitz & Apacible） | 从桌面活动流中学习可打扰性模型 |
+| [Attention-Sensitive Alerting](https://arxiv.org/abs/1301.6707) | UAI 1999（Horvitz, Jacobs, Hovel） | 把提醒建模为期望效用：推迟的代价 vs 打扰的代价，在用户注意力不确定的条件下权衡；「等待」是有可计算价值的一等动作 |
+| [Principles of Mixed-Initiative UI](https://doi.org/10.1145/302979.303030) | CHI 1999（Horvitz） | 决策几何：行动阈值*随用户专注深度上升*；把对话加为第三种动作后得到三路策略——沉默 / 先问 / 直接做——比现代助手把「澄清式提问」当 UX 模式重新发明早了 25 年 |
+| [打断协调的四种基本方式](https://doi.org/10.1207/S15327051HCI1701_2) | HCI 2002（McFarlane） | 时机是一个*协调*问题：immediate / negotiated / mediated / scheduled 四种方式，36 人双任务实验对比。negotiated（系统宣告、用户挑时机）在多数设计目标上胜出——这个基线，现代主动式论文几乎从不跑 |
+| [Learning and Reasoning about Interruption](https://www.microsoft.com/en-us/research/publication/learning-and-reasoning-about-interruption/) | ICMI 2003（Horvitz & Apacible） | 从桌面/日历/音频流中**用美元**（willingness-to-pay）学习打断成本，并能*预报*下一个低成本可打扰窗口；跨用户迁移的模型得分低于多数类猜测——反对人群级时机策略的长期警告 |
+| [任务结构预测打断成本](https://doi.org/10.1145/1124772.1124882) | CHI 2006（Iqbal & Bailey） | 不用任何传感器、只从任务结构算打断成本：三个计划特征预测出恢复时延 3.7 倍的差距（464 → 1,702 ms）——这份价格恰好写在现代脚本跟随型 agent 自己手里的任务分解上 |
+| [计算任务的中断与恢复](https://doi.org/10.1145/1240624.1240730) | CHI 2007（Iqbal & Horvitz） | 实地测得的量级：27 名信息工作者、2,267 小时日志——每次提醒约 20 分钟的中断弧线，27% 被挂起的窗口两小时后仍未恢复。把打断成本按响应时长计价的模型，差了两个数量级 |
+| [InterruptMe](https://doi.org/10.1145/2632048.2632062) | UbiComp 2014（Pejović & Musolesi） | 打断成本是**路径依赖**的：前两小时里已有八条通知时，用户对下一条的情绪好感度腰斩——所以连发的情境驱动门控在「耗尽可打扰性」这个轴上*比随机还差* |
 | [Beyond Interruptibility](https://dl.acm.org/doi/10.1145/3130956) | IMWUT 2017（Pielot 等） | 把问题从「能不能打扰」推进到「这是不是一个*适合触达的时机*」；337 人实地实验，引入行为历史后预测提升 5 倍 |
 | [注意力管理系统综述](https://arxiv.org/abs/1806.06771) | IMWUT 2018（Anderson 等） | 这条脉络在 LLM 前夜的自画像：注意力碎片化、断点、延迟投递，成本项赖以生存的整套词汇 |
+| [JITAI：即时自适应干预](https://doi.org/10.1007/s12160-016-9830-8) | Ann. Behav. Med. 2018（Nahum-Shani 等） | 移动健康领域的时机形式化：决策点、裁量变量、显式的「什么都不提供」动作、把负担与疲劳列为一等成本——但阈值是理论设定的自由参数，两侧期望都没有被估计 |
 | [自适应通知调度的生产部署](https://doi.org/10.1145/3292500.3330732) | KDD 2019（Okoshi 等） | 基于断点的延迟投递：382,518 用户部署实验（点击率最高 +60.7%），随后全量上线 Yahoo! JAPAN **超 1000 万 Android 用户**，这条脉络的人群级实证 |
 | [VR 里的时机预测](https://doi.org/10.1145/3491102.3517529) | CHI 2022（Chen 等） | 可打扰性预测早在主动式 MR 浪潮之前四年就进了头显，而这波浪潮没有引用它 |
 
@@ -132,6 +138,7 @@
 |---|---|---|
 | [Egocentric Procedural AI Assistants](https://arxiv.org/abs/2511.13261) | arXiv 2025.11 | 程序性第一人称辅助的 benchmark 名录与任务版图 |
 | [Proactive Conversational AI](https://doi.org/10.1145/3715097) | ACM TOIS 2025（Deng 等） | 对话侧的综述：*获准开口之后说什么、朝什么目标说*。本图管的是*要不要开口*——引用它，然后划清界线 |
+| [Anticipatory Mobile Computing](https://doi.org/10.1145/2693843) | ACM CSUR 2015（Pejović & Musolesi） | 最接近的前人综述：在移动感知与情境预测的宏大框架里，只用一个小节讲「合适时机」。既没有围绕决策规则组织文献，也没有给介入定价，且完全早于常驻型 LLM 助手 |
 
 ### 在线反馈与自我改进
 
