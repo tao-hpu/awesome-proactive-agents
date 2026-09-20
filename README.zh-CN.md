@@ -195,12 +195,18 @@
 
 ---
 
+## 论文与 pilot 代码
+
+这张地图是综述 *When Should the Agent Speak? A Survey of Intervention Timing for Always-On AI Assistants*（Tao An，已被 Transactions on Machine Learning Research 接收，2026；评审记录见 [OpenReview](https://openreview.net/forum?id=b0yKEdAXEr)）的配套仓库。
+
+[`pilot/`](pilot/) 是综述 §8.4 对应的代码、随机种子与标签播种规则：从 HoloAssist 公开标注播种 must / may / must-not 窗口，再用 §8 的指标组给五条参考策略打分。只依赖 Python 标准库，输出确定，`results.txt` 即预期结果。
+
 ## 贡献指南
 
 一个 PR 一项工作。放进它主要推进的那一层，用一句诚实的话写它做了什么（不是摘要里的宣称），如果进横切表就把四列填全。条目需要可验证的链接（arXiv / DOI / 官方页面）。
 
 ## 维护者
 
-Tao An（[FIM Labs](https://fim.ai)，Singapore），做 agent 运行时；这张地图是一篇进行中的综述的提纲，主题是常驻型 agent 的介入时机。
+Tao An（[FIM Labs](https://fim.ai)，Singapore），做 agent 运行时；这张地图是上述综述的持续更新版。
 
 *许可：CC0。最近核实：2026-07。*
