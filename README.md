@@ -197,7 +197,7 @@ Reading the table by column: signals are getting richer, actors are getting stro
 
 ## Paper and pilot code
 
-This map is the companion to the survey *When Should the Agent Speak? A Survey of Intervention Timing for Always-On AI Assistants* (Tao An, accepted at Transactions on Machine Learning Research, 2026; reviews at [OpenReview](https://openreview.net/forum?id=b0yKEdAXEr)).
+This map is the companion to the survey *When Should the Agent Speak? A Survey of Intervention Timing for Always-On AI Assistants* (Tao An, *Transactions on Machine Learning Research*, 2026; paper and reviews at [OpenReview](https://openreview.net/forum?id=b0yKEdAXEr)).
 
 [`pilot/`](pilot/) holds the code, seed, and seeding rule behind the survey's Section 8.4: it seeds must / may / must-not windows from HoloAssist's public annotations and scores five reference policies with the Section 8 metric suite. Standard library only, deterministic, and `results.txt` is the expected output.
 

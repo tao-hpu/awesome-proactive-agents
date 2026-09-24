@@ -197,7 +197,7 @@
 
 ## 论文与 pilot 代码
 
-这张地图是综述 *When Should the Agent Speak? A Survey of Intervention Timing for Always-On AI Assistants*（Tao An，已被 Transactions on Machine Learning Research 接收，2026；评审记录见 [OpenReview](https://openreview.net/forum?id=b0yKEdAXEr)）的配套仓库。
+这张地图是综述 *When Should the Agent Speak? A Survey of Intervention Timing for Always-On AI Assistants*（Tao An，*Transactions on Machine Learning Research*，2026；论文与评审记录见 [OpenReview](https://openreview.net/forum?id=b0yKEdAXEr)）的配套仓库。
 
 [`pilot/`](pilot/) 是综述 §8.4 对应的代码、随机种子与标签播种规则：从 HoloAssist 公开标注播种 must / may / must-not 窗口，再用 §8 的指标组给五条参考策略打分。只依赖 Python 标准库，输出确定，`results.txt` 即预期结果。
 
