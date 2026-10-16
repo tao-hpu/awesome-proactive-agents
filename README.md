@@ -99,6 +99,7 @@ The core of the field, and the layer with the deepest history. Two lineages that
 | [Seed1.5-VL](https://arxiv.org/abs/2505.07062) | arXiv 2025.05 (ByteDance Seed) | 532M vision encoder + 20B-active MoE; SOTA on 38/60 public benchmarks incl. GUI/agent tasks |
 | [Depth Anything 3](https://arxiv.org/abs/2511.10647) | arXiv 2025.11 (ByteDance Seed) | Any-view geometry from a single plain transformer with a depth-ray target; surpasses VGGT on pose + geometry. Spatial grounding for physical-world intervention |
 | [Full-Duplex-Bench](https://arxiv.org/abs/2503.04721) | ASRU 2025 | Millisecond-scale when-to-speak from the speech community: pause handling, turn-taking, **backchanneling**, barge-in. Backchanneling is the missing *graduated* action: intervention is not binary (silence / full interruption) but a menu of escalating costs |
+| [Asking for What Was Never Requested](https://arxiv.org/abs/2609.37236) | arXiv 2026.09 (IBM) | What a proactive agent goes after once it decides to ask: *horizontal* needs the current state already names vs *vertical* needs only newly found evidence names, scored against need graphs with no LLM judge. A Qwen3-8B questioner trained by DPO on preferences from forked continuations finds 90% of MuSiQue's required evidence vs 78% for the same model prompted, at equal retrieval spend, and transfers without further training to τ²-bench customer service |
 
 *Placement rationale: perception/geometry/GUI-operation are the "hands", mature building blocks. The bottleneck is layer 2, not layer 3.*
 
